@@ -1,0 +1,397 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Overall font style and background */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fdf6fb; /* Light pink background */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    animation: fadeInUp 1.5s ease-in-out;
+}
+
+/* Navigation bar styling */
+nav {
+    background-color: #d14c86; /* Pink color for navbar */
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: fadeInDown 1s ease-in-out;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: white; /* Initial color is white */
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s; /* Added color transition */
+    animation: fadeInLeft 1s ease;
+}
+
+.nav-links a:hover {
+    background-color: #ffccdd; /* Lighter pink on hover */
+    color: black; /* Text turns black on hover */
+    transform: translateY(-2px); /* Lift effect on hover */
+}
+
+/* Header Styling */
+header {
+    background-color: #ffe3f1;
+    padding: 20px;
+    text-align: center;
+    animation: fadeInUp 1s ease-in-out;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+header h1 {
+    color: #d14c86;
+    margin: 0;
+    animation: fadeIn 1s ease;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    background: linear-gradient(to right, #ff7eaa, #ffafcc);
+    color: white;
+    text-align: center;
+    animation: fadeInUp 1s ease;
+}
+
+.hero-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    animation: fadeInDown 1.2s ease;
+}
+
+/* CTA Button */
+.cta-button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #d14c86; /* Pink button color */
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 15px;
+    transition: background-color 0.3s;
+    animation: fadeInUp 1.5s ease;
+}
+
+.cta-button:hover {
+    background-color: #b63c72; /* Darker pink on hover */
+}
+
+/* Main Content Styling (Health Check Section) */
+.health-check {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+    animation: fadeIn 1.5s ease;
+}
+
+.health-check h1 {
+    color: #d14c86; /* Pink color for title */
+    font-size: 2rem;
+    margin-bottom: 15px;
+    animation: fadeInDown 1.2s ease;
+}
+
+.status {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 20px;
+    animation: fadeIn 1s ease;
+}
+
+.status strong {
+    color: #388e3c; /* Dark green for "healthy" status */
+}
+
+/* Form Section */
+.form-section {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1.5s ease;
+}
+
+.form-section h2 {
+    color: #d81b60;
+    margin-bottom: 1rem;
+    text-align: center;
+    animation: fadeInDown 1.2s ease;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+    animation: fadeInLeft 1s ease;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    color: #d81b60;
+    margin-bottom: 0.5rem;
+    animation: fadeIn 1.2s ease;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+/* Result and Status Boxes */
+.result-box {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: #e8f5e9;
+    color: #388e3c;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    animation: fadeInUp 1s ease;
+}
+
+.status-box {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: #ffe0b2;
+    color: #f57c00;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    animation: fadeInUp 1.2s ease;
+}
+
+/* Button Styling */
+.btn {
+    padding: 12px 24px;
+    background-color: #d14c86; /* Pink button color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: bold;
+    animation: fadeInUp 1.2s ease;
+}
+
+.btn:hover {
+    background-color: #b63c72; /* Darker pink on hover */
+}
+
+/* Footer Styling */
+footer {
+    background: linear-gradient(135deg, #d14c86 0%, #ff70a0 100%);
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: auto;
+    width: 100%; /* Ensure it spans the full width */
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    position: relative; /* Makes sure it aligns properly within its parent */
+    left: 0;
+    animation: fadeInUp 1.5s ease-in-out;
+}
+
+/* About Section */
+.about {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+    background-color: #ffe3f1;
+    gap: 30px;
+    animation: fadeIn 1.2s ease;
+}
+
+.about-content {
+    max-width: 500px;
+    animation: fadeInUp 1s ease;
+}
+
+.about h2 {
+    color: #d14c86;
+}
+
+.about-image {
+    flex-shrink: 0;
+    width: 250px;
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+}
+
+/* Result Box */
+.result {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: #f0f0f0;
+    color: #d81b60;
+    font-size: 1.2rem;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 1.2s ease;
+}
+
+.secondary-button {
+    background-color: #ff87b2;
+}
+
+.main {
+    flex: 1;
+}
+
+.team-img {
+    width: 250px !important; /* Set the desired width */
+    height: 250px !important; /* Ensure height matches width */
+    border-radius: 50% !important; /* Forces the image to be circular */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Adds a shadow for depth */
+    object-fit: cover; /* Ensures the image fills the circular frame */
+    animation: fadeInUp 1.2s ease;
+}
+
+/* Info Section Cards */
+.info-sections {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 2rem;
+    animation: fadeIn 1.2s ease;
+}
+
+.info-card {
+    background-color: #fff;
+    text-align: center;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 1.5s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Info Icon Styling */
+.info-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 1rem;
+    animation: fadeInDown 1.2s ease;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+    animation: fadeInUp 1.2s ease;
+}
+
+.p1 {
+    font-size: 1rem;
+    color: #666;
+    animation: fadeInUp 1s ease;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    color: #dfdfdf;
+    border: 2px solid #d14c86;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+    animation: fadeInUp 1.5s ease;
+}
+
+.cta-button:hover {
+    background-color: #d33b7a;
+    color: #fff;
+}

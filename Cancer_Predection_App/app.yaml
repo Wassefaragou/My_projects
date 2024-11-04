@@ -1,0 +1,19 @@
+runtime: python
+env: flex  # Specifies the Flexible environment
+
+# Required libraries
+runtime_config:
+  python_version: 3  # Choose the version that matches your app
+
+# Service settings
+entrypoint: gunicorn -b :$PORT app:app  # Replace 'app:app' with your app module if needed
+
+# Optional automatic scaling settings
+automatic_scaling:
+  min_num_instances: 1
+  max_num_instances: 5
+
+# Additional environment variables
+env_variables:
+  FLASK_ENV: production
+  # You can add other environment variables here, like API keys or secret keys

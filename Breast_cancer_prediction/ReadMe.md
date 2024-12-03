@@ -29,7 +29,7 @@ Welcome to the **Cancer Prediction App**! This application utilizes advanced mac
 - **Backend:** Flask (for serving the machine learning model)
 - **Machine Learning Libraries:** Scikit-learn, Pandas, NumPy
 - **Data Visualization:** Plotly, Matplotlib
-- **Deployment:** Docker, Heroku (or any other hosting service)
+- **Deployment:** Docker , GoogleCloud , AWS , Heroku (or any other hosting service)
 - **Version Control:** Git, GitHub
 
 ## Installation
@@ -38,12 +38,12 @@ To get started with the Cancer Prediction App, follow these steps:
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/Sheris-Milly/Cancer_Predection_App.git
+    git clone https://github.com//Wassefaragou//My_projects.git
     ```
 
 2. **Navigate into the project directory**:
     ```bash
-    cd Cancer_Predection_App
+    cd My_projects\Breast_cancer_prediction
     ```
 
 3. **Install dependencies**:

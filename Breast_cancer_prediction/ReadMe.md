@@ -2,7 +2,6 @@
 
 Welcome to the **Cancer Prediction App**! This application utilizes advanced machine learning techniques to predict the likelihood of breast cancer, the stage of the cancer, and the estimated treatment costs based on user input. The app is designed to be user-friendly, making it accessible for both medical professionals and individuals seeking to understand their risk of breast cancer, the potential stage of cancer, and the financial implications of treatment. With its comprehensive analysis, this app aims to provide valuable insights for better decision-making and healthcare planning.
 
-https://cancer-predection-app-486638708818.europe-west1.run.app/
 
 ## Table of Contents
 

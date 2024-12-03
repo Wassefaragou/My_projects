@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="static/images/favicon-32x32.png" sizes="32x32">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <title>API Status</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Overall font style and background */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fdf6fb; /* Light pink background */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .github-icon {
+    color: white; /* Set color for the GitHub icon */
+    font-size: 1.5rem; /* Icon size */
+    margin-top: 10px;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none; /* Remove underline from link */
+}
+
+.github-icon i {
+    margin-right: 8px; /* Add spacing between the icon and the text */
+}
+
+.github-icon:hover {
+    color: #f1f1f1; /* Change color on hover */
+}
+        /* Navigation bar styling */
+        nav {
+            background-color: #d14c86; /* Pink color for navbar */
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+.logo-link {
+    text-decoration: none; /* Remove underline from the link */
+    color: inherit;        /* Inherit text color from surrounding elements */
+  }
+
+  /* Change cursor to pointer to indicate it's clickable */
+  .logo-link:hover .logo {
+    cursor: pointer;
+  }
+
+  /* Optional: Add some hover effect for better interaction */
+  .logo-link:hover .logo {
+    color: #000000; /* Change color when hovered, customize as needed */
+  }
+
+.nav-links a {
+    color: white; /* Initial color is white */
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s; /* Added color transition */
+}
+
+.nav-links a:hover {
+    background-color: #ffccdd; /* Lighter pink on hover */
+    color: black; /* Text turns black on hover */
+    transform: translateY(-2px); /* Lift effect on hover */
+}
+
+        /* Main content styling */
+        .health-check {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .health-check h1 {
+            color: #d14c86; /* Pink color for title */
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        .status {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .status strong {
+            color: #388e3c; /* Dark green for "healthy" status */
+        }
+        /* Button styling */
+        .btn {
+            padding: 12px 24px;
+            background-color: #d14c86; /* Pink button color */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+        .btn:hover {
+            background-color: #b63c72; /* Darker pink on hover */
+        }
+        /* Footer styling */
+        footer {
+    background: linear-gradient(135deg, #d14c86 0%, #ff70a0 100%);
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: auto;
+    width: 100%; /* Ensure it spans the full width */
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    position: relative; /* Makes sure it aligns properly within its parent */
+    left: 0;
+}
+        /* Mobile menu toggle */
+.menu-toggle {
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+    display: none; /* Hidden on desktop */
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    animation: fadeSlideDown 0.5s ease-in-out;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #d81b60;
+    font-size: 1.2rem;
+}
+
+.close-button {
+    background-color: #d81b60;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.close-button:hover {
+    background-color: #c2185b;
+}
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* Hide links by default on mobile */
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+
+    /* Show the links when menu is toggled */
+    .nav-links.active {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block; /* Show toggle icon on mobile */
+    }}
+        .status-online {
+    color: green;
+    font-weight: bold;
+}
+
+.status-offline {
+    color: red;
+    font-weight: bold;
+}
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="{{url_for('home')}}" target="_blank" class="logo-link">
+            <div class="logo">Breast Cancer Prediction<span>.</span></div>
+        </a> 
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('predict_page') }}">Predict</a></li>
+            <li><a href="{{ url_for('status') }}">Status</a></li>
+            <li><a href="{{ url_for('aboutus_page') }}">Team</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content: API Status Section -->
+<div class="health-check">
+    <h1>System Health Status</h1>
+    <button class="btn" onclick="checkApiStatus()">Check API Status</button>
+</div>
+
+<!-- Modal for displaying API status -->
+<div id="resultModal" class="modal">
+    <div class="modal-content">
+        <p id="statusResult">Checking status...</p>
+        <button class="close-button" onclick="closeModal()">Close</button>
+    </div>
+</div>
+
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 Breast Cancer Prediction. | All rights reserved.</p>
+        <a href="https://github.com/Wassefaragou/Breast_cancer_prediction" target="_blank" class="github-icon" title="Click to open the GitHub repository of our project">
+            <i class="fab fa-github"></i> GitHub
+        </a>
+    </footer>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
+
+

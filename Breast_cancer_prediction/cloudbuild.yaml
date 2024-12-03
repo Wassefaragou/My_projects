@@ -1,0 +1,41 @@
+steps:
+  # Build the container image
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "build",
+        "-t",
+        "gcr.io/zinc-mantra-440520-a9/cancer-prediction-app:$COMMIT_SHA",  # Corrected image name
+        "."  # Build from the root directory
+      ]
+
+  # Push the container image to Google Container Registry
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "push",
+        "gcr.io/zinc-mantra-440520-a9/cancer-prediction-app:$COMMIT_SHA"  # Corrected image name
+      ]
+
+  # Deploy the image to Cloud Run
+  - name: "gcr.io/cloud-builders/gcloud"
+    args:
+      [
+        "run",
+        "deploy",
+        "cancer-predection-app",  # Cloud Run service name
+        "--image",
+        "gcr.io/zinc-mantra-440520-a9/cancer-prediction-app:$COMMIT_SHA",  # Corrected image name
+        "--region",
+        "europe-west1",
+        "--platform",
+        "managed",
+        "--allow-unauthenticated"  # Optional flag for public access
+      ]
+
+# Specify the image location to be pushed
+images:
+  - "gcr.io/zinc-mantra-440520-a9/cancer-prediction-app:$COMMIT_SHA"  # Corrected image name
+
+# Specify the bucket for logs if required
+logsBucket: "gs://staging.zinc-mantra-440520-a9.appspot.com"

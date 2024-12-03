@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breast Cancer Prediction</title>
+    <link rel="icon" type="image/png" href="static/images/favicon-32x32.png" sizes="32x32">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9f5f5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #d14c86;
+            padding: 15px 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            color: white;
+            font-weight: 700;
+        }
+        .logo-link {
+    text-decoration: none; /* Remove underline from the link */
+    color: inherit;        /* Inherit text color from surrounding elements */
+  }
+
+  /* Change cursor to pointer to indicate it's clickable */
+  .logo-link:hover .logo {
+    cursor: pointer;
+  }
+
+  /* Optional: Add some hover effect for better interaction */
+  .logo-link:hover .logo {
+    color: #000000; /* Change color when hovered, customize as needed */
+  }
+
+        .logo span {
+            color: #fff;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            color: #ffefdb;
+        }
+
+        /* Mobile Nav Toggle */
+        .menu-toggle {
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+            display: none; /* Hidden on desktop */
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 60px;
+            background: linear-gradient(to right, #ff7eaa, #ffafcc);
+            color: white;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in-out forwards;
+        }
+
+        .hero h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #d14c86;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #b63c72;
+            transform: translateY(-2px); /* Lift effect on hover */
+        }
+
+      
+/* Option Section */
+.option-section {
+    display: flex;
+    justify-content: space-between; /* Distribute space evenly between items */
+    align-items: center; /* Center the content vertically */
+    padding: 40px;
+    flex-wrap: wrap; /* Allow wrapping for responsiveness */
+    gap: 30px;
+    animation: fadeIn 1.5s ease-in-out forwards;
+}
+
+.option-card {
+    background-color: #ffffff;
+    text-align: center;
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    width: 320px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 350px;
+}
+
+.choose-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    width: 150px; /* Control width of the "Choose one" text */
+    min-height: 350px; /* Ensure it matches the height of the option cards */
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+.option-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+.option-card h3 {
+    font-size: 1.9rem;
+    margin-bottom: 1rem;
+    color: #333;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.option-card p {
+    font-size: 1.15rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.option-card a {
+    display: inline-block;
+    padding: 14px 28px;
+    background-color: #d14c86;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    letter-spacing: 1px;
+}
+
+.option-card a:hover {
+    background-color: #b63c72;
+    transform: translateY(-3px);
+}
+
+/* Ensure the animation for fade-in is working */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+        /* Footer */
+        footer {
+    background: linear-gradient(135deg, #d14c86 0%, #ff70a0 100%);
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: auto;
+    width: 100%; /* Ensure it spans the full width */
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    position: relative; /* Makes sure it aligns properly within its parent */
+    left: 0;
+}
+
+.github-icon {
+    color: white; /* Set color for the GitHub icon */
+    font-size: 1.5rem; /* Icon size */
+    margin-top: 10px;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none; /* Remove underline from link */
+}
+
+.github-icon i {
+    margin-right: 8px; /* Add spacing between the icon and the text */
+}
+
+.github-icon:hover {
+    color: #f1f1f1; /* Change color on hover */
+}
+
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 15px;
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block; /* Show toggle on mobile */
+            }
+
+            .option-section {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .option-card {
+                width: 80%;
+                margin-bottom: 20px;
+            }
+        }
+
+        /* Keyframe animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="{{url_for('home')}}" target="_blank" class="logo-link">
+            <div class="logo">Breast Cancer Prediction<span>.</span></div>
+        </a> 
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('predict_page') }}">Predict</a></li>
+            <li><a href="{{ url_for('status') }}">Status</a></li>
+            <li><a href="{{ url_for('aboutus_page') }}">Team</a></li>
+        </ul>
+    </nav>
+
+    <section class="option-section">
+        <div class="option-card">
+            <h3>Predict Cancer Stage & Treatment Cost</h3>
+            <p>Use the Elastic Net and Random Forest models to predict cancer stage and estimate treatment costs.</p>
+            <a href="{{ url_for('predict1_page') }}">Go to Prediction</a>
+        </div>
+    
+        <div class="choose-text">
+            <p>Choose one</p>
+        </div>
+    
+        <div class="option-card">
+            <h3>Predict Tumor Type</h3>
+            <p>Use the Elastic Net model to predict whether a breast tumor is benign or malignant.</p>
+            <a href="{{ url_for('predict2_page') }}">Go to Prediction</a>
+        </div>
+    </section>    
+
+    <footer>
+        <p>© 2024 Breast Cancer Prediction. | All rights reserved.</p>
+        <a href="https://github.com/Wassefaragou/Breast_cancer_prediction" target="_blank" class="github-icon" title="Click to open the GitHub repository of our project">
+            <i class="fab fa-github"></i> GitHub
+        </a>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

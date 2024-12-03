@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breast Cancer Prediction</title>
+    <link rel="icon" type="image/png" href="static/images/favicon-32x32.png" sizes="32x32">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        /* General Reset */
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fdf6fb;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.github-icon {
+    color: white; /* Set color for the GitHub icon */
+    font-size: 1.5rem; /* Icon size */
+    margin-top: 10px;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none; /* Remove underline from link */
+}
+
+.github-icon i {
+    margin-right: 8px; /* Add spacing between the icon and the text */
+}
+
+.github-icon:hover {
+    color: #f1f1f1; /* Change color on hover */
+}
+/* Mobile Nav Toggle */
+.menu-toggle {
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+    display: none; /* Hidden on desktop */
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    background: linear-gradient(to right, #ff7eaa, #ffafcc);
+    color: white;
+    text-align: center;
+    opacity: 0;
+    animation: fadeIn 1.5s ease-in-out forwards;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #d14c86;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 15px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #b63c72;
+    transform: translateY(-2px); /* Lift effect on hover */
+}
+
+/* Info Section */
+.info-sections {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.info-card {
+    background-color: #fff;
+    text-align: center;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    opacity: 0;
+    animation: fadeIn 2s ease forwards;
+}
+
+.info-card:hover {
+    transform: scale(1.05); /* Slight scale effect on hover */
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.p1 {
+    font-size: 1rem;
+    color: #666;
+}
+
+/* Footer */
+footer {
+    background: linear-gradient(135deg, #d14c86 0%, #ff70a0 100%);
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: auto;
+    font-size: 14px;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block; /* Show toggle on mobile */
+    }
+
+    .hero {
+        padding: 30px 20px;
+    }
+
+    .hero h2 {
+        font-size: 2rem;
+    }
+
+    .info-sections {
+        grid-template-columns: 1fr; /* Single column on mobile */
+        padding: 1rem;
+    }
+}
+
+/* Keyframe animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.logo-link {
+    text-decoration: none; /* Remove underline from the link */
+    color: inherit;        /* Inherit text color from surrounding elements */
+  }
+
+  /* Change cursor to pointer to indicate it's clickable */
+  .logo-link:hover .logo {
+    cursor: pointer;
+  }
+
+  /* Optional: Add some hover effect for better interaction */
+  .logo-link:hover .logo {
+    color: #000000; /* Change color when hovered, customize as needed */
+  }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="{{url_for('home')}}" target="_blank" class="logo-link">
+            <div class="logo">Breast Cancer Prediction<span>.</span></div>
+        </a> 
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('predict_page') }}">Predict</a></li>
+            <li><a href="{{ url_for('status') }}">Status</a></li>
+            <li><a href="{{ url_for('aboutus_page') }}">Team</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Empowering Early Detection</h2>
+<p>Our AI-driven tool assists healthcare professionals in accurately identifying breast cancer, determining the tumor type, and assessing the stage of cancer. It also provides insights into potential treatment options and associated costs in the United States. Together, we can make a difference in early cancer detection and care.</p>
+            <a href="{{ url_for('predict_page') }}" class="cta-button">Start Prediction</a>
+        </div>
+    </section>
+
+    <main class="info-sections">
+        <section class="info-card">
+            <img src="{{ url_for('static', filename='images/icon1.svg') }}" alt="Healthcare Illustration" style="width: 100px; height: 100px;">
+            <h3>Looking For Answers?</h3>
+            <p class="p1">Not knowing is scary. Start your research here and get help along the way.</p>
+            <a href="{{ url_for('learnmore_page') }}" class="cta-button">About Breast Cancer</a>
+        </section>
+
+        <section class="info-card">
+            <img src="{{ url_for('static', filename='images/icon2.svg') }}" alt="Healthcare Illustration" style="width: 100px; height: 100px;">
+            <h3>AI-Powered </h3>
+            <p class="p1">Predict breast cancer probability with reliable, AI-driven insights for better outcomes.</p>
+            <a href="{{url_for('ML_page')}}" class="cta-button">About Our Models</a>
+        </section>
+
+        <section class="info-card">
+            <img src="{{ url_for('static', filename='images/icon3.svg') }}" alt="Healthcare Illustration" style="width: 100px; height: 100px;">
+            <h3>Support The Cause</h3>
+            <p class="p1">We need your help. From donations to volunteering, check Fondation lala Salma.</p>
+            <a href="https://contrelecancer.ma/en/" class="cta-button" target="_blank">Get Involved</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Breast Cancer Prediction. | All rights reserved.</p>
+        <a href="https://github.com/Wassefaragou/Breast_cancer_prediction" target="_blank" class="github-icon" title="Click to open the GitHub repository of our project">
+            <i class="fab fa-github"></i> GitHub
+        </a>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

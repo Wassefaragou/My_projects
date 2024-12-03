@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="icon" type="image/png" href="static/images/favicon-32x32.png" sizes="32x32">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Overall font style and background */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fdf6fb; /* Light pink background */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.github-icon {
+    color: white; /* Set color for the GitHub icon */
+    font-size: 1.5rem; /* Icon size */
+    margin-top: 10px;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none; /* Remove underline from link */
+}
+
+.github-icon i {
+    margin-right: 8px; /* Add spacing between the icon and the text */
+}
+
+.github-icon:hover {
+    color: #f1f1f1; /* Change color on hover */
+}
+/* Mobile menu toggle */
+.menu-toggle {
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+    display: none; /* Hidden on desktop */
+}
+
+/* Main content styling */
+.outer-container {
+    background-color: rgb(244, 252, 255);
+    flex: 1; /* Allows the main content to grow and push footer down */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inner-container {
+    max-width: 1320px;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px auto;
+}
+
+.section-head-text {
+    font-size: 35px;
+    font-weight: 700;
+    line-height: 48px;
+    color: #d14c86; /* Pink color for heading */
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.section-subhead-text {
+    font-size: 25px;
+    color: rgb(153, 153, 153);
+    line-height: 35px;
+    max-width: 470px;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.team-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Spaces out team cards */
+}
+
+.team-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 70px;
+    width: calc(25% - 50px); /* Four cards per row, adjust as needed */
+}
+
+.name {
+    font-size: 25px;
+    font-weight: 700;
+    color: rgb(102, 102, 102);
+    margin: 5px 0;
+}
+
+.position {
+    font-size: 20px;
+    font-weight: 500;
+    color: rgb(0, 135, 177);
+}
+
+.team-img {
+    width: 300px;
+    height: 300px;
+    border-radius: 60%; /* Circular image */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+    object-fit: cover;
+}
+
+.social-media-links {
+    width: 125px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Footer styling */
+footer {
+    background: linear-gradient(135deg, #d14c86 0%, #ff70a0 100%);
+    color: white;
+    text-align: center;
+    margin-top: auto;
+    width: 100%;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    padding: 0px 0;
+}
+.logo-link {
+    text-decoration: none; /* Remove underline from the link */
+    color: inherit;        /* Inherit text color from surrounding elements */
+  }
+
+  /* Change cursor to pointer to indicate it's clickable */
+  .logo-link:hover .logo {
+    cursor: pointer;
+  }
+
+  /* Optional: Add some hover effect for better interaction */
+  .logo-link:hover .logo {
+    color: #000000; /* Change color when hovered, customize as needed */
+  }
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* Hide links by default on mobile */
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+
+    /* Show the links when menu is toggled */
+    .nav-links.active {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block; /* Show toggle icon on mobile */
+    }
+
+    /* Adjust card layout for mobile */
+    .team-card {
+        width: calc(50% - 40px); /* Two cards per row on tablet */
+        margin: 20px; /* Reduce margin for smaller screens */
+    }
+
+    /* Adjust text sizes for smaller screens */
+    .section-head-text {
+        font-size: 28px;
+    }
+
+    .section-subhead-text {
+        font-size: 20px;
+        margin-bottom: 40px;
+    }
+}
+
+@media (max-width: 500px) {
+    .outer-container {
+        padding: 10px 20px;
+    }
+
+    .section-head-text {
+        text-align: center;
+        font-size: 24px;
+    }
+
+    .team-card {
+        width: 100%; /* One card per row on mobile */
+        margin: 10px 0; /* Adjust margin for smaller screens */
+    }
+}
+
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="{{url_for('home')}}" target="_blank" class="logo-link">
+            <div class="logo">Breast Cancer Prediction<span>.</span></div>
+        </a> 
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('predict_page') }}">Predict</a></li>
+            <li><a href="{{ url_for('status') }}">Status</a></li>
+            <li><a href="{{ url_for('aboutus_page') }}">Team</a></li>
+        </ul>
+    </nav>
+
+ <div class="outer-container">
+    <div class="inner-container">
+        <p class="section-head-text">Meet Our Team</p>
+        <div class="responsive-container-block">
+            <div class="team-card-container">
+                <div class="responsive-cell-block team-card">
+                    <div class="img-wrapper">
+                        <img class="team-img" src="https://media.licdn.com/dms/image/v2/D4E03AQHCkMcy1KIwPQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1728263008165?e=1735776000&v=beta&t=R5vWIxFfnPItSIUn8302tHB8Qq25KqpN_5pArGA9siQ" alt="Imad Agjoud">
+                    </div>
+                    <p class="name">Imad Agjoud</p>
+                    <p class="position">ML/Ai Engineer </p>
+                    <div class="social-media-links">
+                        <a href="https://www.linkedin.com/in/imad-agjoud/" target="_blank">
+                            <img src="https://img.icons8.com/?size=100&id=8808&format=png&color=4D4D4D" alt="LinkedIn" style="width: 24px; height: 24px;">
+                        </a>
+                        <a href="mailto:imadagjoud@gmail.com" target="_blank">
+                            <img src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/gray-mail.svg" alt="Email">
+                        </a>
+                    </div>
+                </div>
+            <div class="responsive-cell-block team-card">
+                    <div class="img-wrapper">
+                        <img class="team-img" src="https://media.licdn.com/dms/image/v2/D4E03AQHOLUIEhjuqJg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1710950995372?e=1735776000&v=beta&t=j444Zt2XNqe-4hAeY-Qx-U7OALtxIX_Fwm4ttYLzjAc" alt="WIDAD JABHA">
+                    </div>
+                    <p class="name">WASSEF ARAGOU</p>
+                    <p class="position">front end developer</p>
+                    <div class="social-media-links">
+                        <a href="https://www.linkedin.com/in/wassef-aragou-7569a9270/" target="_blank">
+                            <img src="https://img.icons8.com/?size=100&id=8808&format=png&color=4D4D4D" alt="LinkedIn" style="width: 24px; height: 24px;">
+                        </a>
+                        <a href="mailto:aragou.wassif@gmail.com" target="_blank">
+                            <img src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/gray-mail.svg" alt="Email">
+                        </a>
+                    </div>
+                </div>
+		    <div class="responsive-cell-block team-card">
+                    <div class="img-wrapper">
+                        <img class="team-img" src="https://media.licdn.com/dms/image/v2/D4E03AQGdRmCMApKiVw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1728653189168?e=1735776000&v=beta&t=nydjWFLYydvZIFG7y-bwVgMWszZrq-i52H1sxJNGYaw" alt="MOUAD MALIH">
+                    </div>
+                    <p class="name">MOUAD MALIH</p>
+                    <p class="position">back end developer</p>
+                    <div class="social-media-links">
+                        <a href="https://www.linkedin.com/in/mouad-malih-756116288?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BefR4o3ClTtKrEOru3mmYhQ%3D%3D" target="_blank">
+                            <img src="https://img.icons8.com/?size=100&id=8808&format=png&color=4D4D4D" alt="LinkedIn" style="width: 24px; height: 24px;">
+                        </a>
+                        <a href="mailto:mouad.malih.17@gmail.com" target="_blank">
+                            <img src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/gray-mail.svg" alt="Email">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <p class="section-head-text">Our Supervisor</p>
+        <div class="team-card" style="margin: 0 auto; text-align: center;">
+            <div class="img-wrapper">
+                <img class="team-img" src="https://media.licdn.com/dms/image/v2/C4E03AQGT8otI2KGUVw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1653390755680?e=1736380800&v=beta&t=3tLAuXw4-CxG7PBQrHpavylwuqnIf-2cQymRd62hmS4" alt="Youssef Lamrani Alaoui">
+            </div>
+            <p class="name">Dr.Youssef Lamrani Alaoui
+ </p>
+            <p class="position">Professor - EMI / MIS Department</p>
+            <div class="social-media-links">
+                <a href="https://www.linkedin.com/in/youssef-lamrani-alaoui-b9390175/" target="_blank">
+                    <img src="https://img.icons8.com/?size=100&id=8808&format=png&color=4D4D4D" alt="LinkedIn" style="width: 24px; height: 24px;">
+                </a>
+                <a href="mailto:lamraniyssf@gmail.com" target="_blank">
+                    <img src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/gray-mail.svg" alt="Email">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 Breast Cancer Prediction. | All rights reserved.</p>
+        <a href="https://github.com/Wassefaragou/Breast_cancer_prediction" target="_blank" class="github-icon" title="Click to open the GitHub repository of our project">
+            <i class="fab fa-github"></i> GitHub
+        </a>
+    </footer>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
